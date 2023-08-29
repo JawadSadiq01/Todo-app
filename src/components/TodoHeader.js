@@ -36,6 +36,7 @@ const TodoHeader = ({id,title,description}) => {
   const CreateNewTask = () => {
     if (validateTask()==true) {
       dispatch(addTodo({title: todoTitle,description:todoDescription}));
+      Alert.alert("Added Todo Successfully!");
       navigation.navigate("Home")
     }else return
   };
@@ -43,6 +44,7 @@ const TodoHeader = ({id,title,description}) => {
   const UpdateTask = ()=>{
     if (validateTask()==true) {
     dispatch(updateTodo({id,title:todoTitle,description:todoDescription}))
+    Alert.alert("Updated Todo Successfully!");
     navigation.navigate("Home")
     }else return
   };

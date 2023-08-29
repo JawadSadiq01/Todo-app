@@ -77,14 +77,14 @@ export const ListStyles = StyleSheet.create({
     buttonContainer: {
       position: 'absolute',
       bottom: 15,
-      padding:15,
+      padding:10,
       right: 20,
       backgroundColor: 'blue',
       opacity:0.5,
       textAlign:'center',
       alignItems:'center',
       justifyContent:'center',
-      borderRadius: 30,
+      borderRadius: 20,
     },
     buttonText: {
       fontSize:30,

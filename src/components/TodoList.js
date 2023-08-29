@@ -10,9 +10,12 @@ import React, { memo, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "../redux/features/todos/todoSlice";
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faMugSaucer } from '@fortawesome/free-solid-svg-icons/faMugSaucer'
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { timeAgo } from "./TimeAgo";
 import { ListStyles as styles } from "./styles";
+import { faDeleteLeft, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 function TodoList(){
 
   const [search, setSearch] = useState("");
@@ -55,22 +58,28 @@ function TodoList(){
         </View>
           <View style={styles.todoActions}>
             <TouchableOpacity
-              style={styles.deleteButton}
+              style={[styles.deleteButton,{paddingRight:10}]}
               onPress={() =>onUpdate(item.id,item.title,item.description)}
             >
-              <Text style={[styles.actionText,{color:'green'}]}>✎</Text>
+              <FontAwesomeIcon size={25} color="blue" icon={faPenToSquare} />
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.deleteButton}
               onPress={() => onDelete(item.id)}
             >
-              <Text style={[styles.actionText,{color:'red'}]}>⌦</Text>
+              <FontAwesomeIcon size={25}  color="red" icon={faTrash} />
             </TouchableOpacity>
           </View>
           </View>
       </View>
     );
   };
+
+  const renderEmptyMessage = () => (
+    <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+      <Text>No Todos available!</Text>
+    </View>
+  );
 
   return (
     <View style={{height:'100%'}}>
@@ -92,6 +101,7 @@ function TodoList(){
         data={search.length!=0?filteredTodos: todos}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
+        ListEmptyComponent={renderEmptyMessage}
       />
     </View>
   );
